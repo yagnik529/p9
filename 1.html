@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Define a sample matrix  
+        const matrix = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
+        ];
+
+        // 1. Find sum of all elements in matrix  
+        function sumAllElements(matrix) {
+            return matrix.flat().reduce((acc, curr) => acc + curr, 0);
+        }
+
+        // 2. Find sum of even index elements  
+        function sumEvenIndexElements(matrix) {
+            let sum = 0;
+            for (let i = 0; i < matrix.length; i++) {
+                for (let j = 0; j < matrix[i].length; j++) {
+                    if ((i + j) % 2 === 0) { // even index condition  
+                        sum += matrix[i][j];
+                    }
+                }
+            }
+            return sum;
+        }
+
+        // 3. Find sum of odd index elements in matrix  
+        function sumOddIndexElements(matrix) {
+            let sum = 0;
+            for (let i = 0; i < matrix.length; i++) {
+                for (let j = 0; j < matrix[i].length; j++) {
+                    if ((i + j) % 2 !== 0) { // odd index condition  
+                        sum += matrix[i][j];
+                    }
+                }
+            }
+            return sum;
+        }
+
+        // 4. Find sum of left elements in matrix (left half of the matrix)  
+        function sumLeftElements(matrix) {
+            let sum = 0;
+            for (let i = 0; i < matrix.length; i++) {
+                for (let j = 0; j < Math.floor(matrix[i].length / 2); j++) {
+                    sum += matrix[i][j];
+                }
+            }
+            return sum;
+        }
+
+        // 5. Find sum of right elements in matrix (right half of the matrix)  
+        function sumRightElements(matrix) {
+            let sum = 0;
+            for (let i = 0; i < matrix.length; i++) {
+                for (let j = Math.ceil(matrix[i].length / 2); j < matrix[i].length; j++) {
+                    sum += matrix[i][j];
+                }
+            }
+            return sum;
+        }
+
+        // 6. Find sum of both diagonals in matrix  
+        function sumDiagonals(matrix) {
+            let sum = 0;
+            for (let i = 0; i < matrix.length; i++) {
+                sum += matrix[i][i]; // primary diagonal  
+                if (i < matrix[i].length) {
+                    sum += matrix[i][matrix.length - 1 - i]; // secondary diagonal  
+                }
+            }
+            // For square matrix, subtract the middle element if odd  
+            if (matrix.length % 2 !== 0) {
+                sum -= matrix[Math.floor(matrix.length / 2)][Math.floor(matrix.length / 2)];
+            }
+            return sum;
+        }
+
+        // Example of using the functions  
+        console.log("Sum of all elements:", sumAllElements(matrix));
+        console.log("Sum of even index elements:", sumEvenIndexElements(matrix));
+        console.log("Sum of odd index elements:", sumOddIndexElements(matrix));
+        console.log("Sum of left elements:", sumLeftElements(matrix));
+        console.log("Sum of right elements:", sumRightElements(matrix));
+        console.log("Sum of both diagonals:", sumDiagonals(matrix));
+    </script>
+</body>
+
+</html>
